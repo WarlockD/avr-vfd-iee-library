@@ -8,6 +8,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
 #define DATA_OUT PORTB
 #define RESET_SET PORTD |= _BV(PD5)
@@ -17,18 +18,33 @@
 #define IS_BUSY (_BV(PD3) & PIND)
 #define LED_ON PORTD |= _BV(PD2)
 #define LED_OFF PORTD &= ~(_BV(PD2))
+static volatile bool is_busy = false;
+
+ISR(INT1_vect) {
+	_delay_us(20);
+	is_busy = false;
+	//serial.send("woo_1\r\n");
+}
 
 vfd::vfd() {
 	DDRB = 0xFF;
 	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+	MCUCR |= _BV(ISC11); //falling edge
+	//MCUCR |= _BV(ISC01) | _BV(ISC00) ; // rising edge
+	// 0 is low level and 0 1 is any logical
+	GIMSK |= _BV(INT1);
+	sei();
 }
 void vfd::send(unsigned char c)const  {
-	while(IS_BUSY);
-	WRITE_CLR;
+	while(is_busy);
+	is_busy = true;
 	DATA_OUT = c;
 	WRITE_SET;
 	_delay_us(250);
 	WRITE_CLR;
+}
+void vfd::send(const char* str) const {
+	while(*str) send(*str++);
 }
 void vfd::hw_reset()const  {
 	RESET_CLR;
@@ -38,11 +54,16 @@ void vfd::hw_reset()const  {
 
 // Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
 // its just crazy otherwise
-//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
-static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
-	return ((*font >> from) & 0x01) << to;
-	//return (*font & (1 << from)) ? (1<<to) : 0;
+//#define VFD_CONVERT(a,from,to) ((((*(a)) >> (from)) & 0x01) << (to))
+
+// input the font bitmap, the bit from that line of the bitmap and the bit it needs to go to
+
+ static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	//return ((*font >> from) & 0x01) << to;
+	return (*font & (1 << from)) ? (1<<to) : 0;
 }
+
+// macros to make it easyer to read and see
 #define CM_01 font+0, 4
 #define CM_02 font+0, 3
 #define CM_03 font+0, 2
@@ -120,6 +141,7 @@ void vfd::load_custom(unsigned char loc, const unsigned char font[]) {
 	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
 	send(o);							// send byte 3
 	//4	|	X	07	13	30	23	04	14	22
+	// Sending a byte
 	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
 	send(o);							// send byte 4
 	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
