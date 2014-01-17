@@ -37,6 +37,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../simplevfd.cpp \
+../usart.cpp \
 ../vfd.cpp
 
 
@@ -48,18 +49,22 @@ ASM_SRCS +=
 
 OBJS +=  \
 simplevfd.o \
+usart.o \
 vfd.o
 
 OBJS_AS_ARGS +=  \
 simplevfd.o \
+usart.o \
 vfd.o
 
 C_DEPS +=  \
 simplevfd.d \
+usart.d \
 vfd.d
 
 C_DEPS_AS_ARGS +=  \
 simplevfd.d \
+usart.d \
 vfd.d
 
 OUTPUT_FILE_PATH +=simplevfd.elf
@@ -73,6 +78,8 @@ OUTPUT_FILE_DEP:= ./makedep.mk
 LIB_DEP+= 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

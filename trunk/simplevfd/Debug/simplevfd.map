@@ -15,8 +15,13 @@ Discarded input sections
 
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr25/tiny-stack/crttn2313a.o
  .text          0x00000000        0x0 simplevfd.o
+ .text          0x00000000        0x0 usart.o
+ .bss           0x00000000        0x0 usart.o
+ .text._ZN5usartC2Eh
+                0x00000000        0xe usart.o
+ .text._ZN5usart8set_bandEh
+                0x00000000        0x6 usart.o
  .text          0x00000000        0x0 vfd.o
- .bss           0x00000000        0x0 vfd.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
  .text.libgcc.mul
@@ -98,6 +103,7 @@ Linker script and memory map
 
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr25/tiny-stack/crttn2313a.o
 LOAD simplevfd.o
+LOAD usart.o
 LOAD vfd.o
 START GROUP
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr25/tiny-stack\libm.a
@@ -198,7 +204,7 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x5a0
+.text           0x00000000      0x4de
  *(.vectors)
  .vectors       0x00000000       0x2a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr25/tiny-stack/crttn2313a.o
                 0x00000000                __vector_default
@@ -257,7 +263,6 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  *(.init9)
  *(.text)
  .text          0x00000072        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr25/tiny-stack/crttn2313a.o
-                0x00000072                __vector_1
                 0x00000072                __vector_12
                 0x00000072                __bad_interrupt
                 0x00000072                __vector_6
@@ -270,7 +275,6 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
                 0x00000072                __vector_5
                 0x00000072                __vector_4
                 0x00000072                __vector_9
-                0x00000072                __vector_2
                 0x00000072                __vector_15
                 0x00000072                __vector_8
                 0x00000072                __vector_14
@@ -280,32 +284,54 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
                 0x00000072                __vector_20
                 0x00000074                . = ALIGN (0x2)
  *(.text.*)
+ .text.__vector_1
+                0x00000074       0x4e simplevfd.o
+                0x00000074                __vector_1
  .text.startup.main
-                0x00000074       0x44 simplevfd.o
-                0x00000074                main
+                0x000000c2       0x72 simplevfd.o
+                0x000000c2                main
  .text.startup._GLOBAL__sub_I_display
-                0x000000b8        0x6 simplevfd.o
+                0x00000134        0xc simplevfd.o
+ .text._ZN5usartC2Ev
+                0x00000140       0x10 usart.o
+                0x00000140                _ZN5usartC2Ev
+                0x00000140                _ZN5usartC1Ev
+ .text._ZN5usart4sendEh
+                0x00000150        0x8 usart.o
+                0x00000150                _ZN5usart4sendEh
+ .text._ZN5usart4sendEPKc
+                0x00000158       0x18 usart.o
+                0x00000158                _ZN5usart4sendEPKc
+ .text._ZN5usart16blocking_recieveEv
+                0x00000170        0x8 usart.o
+                0x00000170                _ZN5usart16blocking_recieveEv
+ .text.__vector_2
+                0x00000178       0x24 vfd.o
+                0x00000178                __vector_2
  .text._ZN3vfdC2Ev
-                0x000000be        0xa vfd.o
-                0x000000be                _ZN3vfdC2Ev
-                0x000000be                _ZN3vfdC1Ev
+                0x0000019c       0x18 vfd.o
+                0x0000019c                _ZN3vfdC2Ev
+                0x0000019c                _ZN3vfdC1Ev
  .text._ZNK3vfd4sendEh
-                0x000000c8       0x1a vfd.o
-                0x000000c8                _ZNK3vfd4sendEh
+                0x000001b4       0x22 vfd.o
+                0x000001b4                _ZNK3vfd4sendEh
+ .text._ZNK3vfd4sendEPKc
+                0x000001d6       0x32 vfd.o
+                0x000001d6                _ZNK3vfd4sendEPKc
  .text._ZNK3vfd8hw_resetEv
-                0x000000e2        0xe vfd.o
-                0x000000e2                _ZNK3vfd8hw_resetEv
+                0x00000208        0xe vfd.o
+                0x00000208                _ZNK3vfd8hw_resetEv
  .text._ZN3vfd11load_customEhPKh
-                0x000000f0      0x4a0 vfd.o
-                0x000000f0                _ZN3vfd11load_customEhPKh
- .text.libgcc   0x00000590        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_tablejump.o)
-                0x00000590                __tablejump2__
-                0x00000594                __tablejump__
-                0x0000059c                . = ALIGN (0x2)
+                0x00000216      0x2b8 vfd.o
+                0x00000216                _ZN3vfd11load_customEhPKh
+ .text.libgcc   0x000004ce        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_tablejump.o)
+                0x000004ce                __tablejump2__
+                0x000004d2                __tablejump__
+                0x000004da                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000059c        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
-                0x0000059c                _exit
-                0x0000059c                exit
+ .fini9         0x000004da        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
+                0x000004da                _exit
+                0x000004da                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -324,15 +350,16 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000059c        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
+ .fini0         0x000004da        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
  *(.fini0)
-                0x000005a0                _etext = .
+                0x000004de                _etext = .
 
-.data           0x00800060        0x8 load address 0x000005a0
+.data           0x00800060       0x20 load address 0x000004de
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr25/tiny-stack/crttn2313a.o
  .data          0x00800060        0x0 simplevfd.o
+ .data          0x00800060        0x0 usart.o
  .data          0x00800060        0x0 vfd.o
  .data          0x00800060        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_exit.o)
  .data          0x00800060        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr25/tiny-stack\libgcc.a(_copy_data.o)
@@ -343,29 +370,34 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  *(.rodata)
  .rodata        0x00800060        0x7 simplevfd.o
  *(.rodata*)
+ .rodata.str1.1
+                0x00800067       0x18 simplevfd.o
+                                 0x1b (size before relaxing)
  *(.gnu.linkonce.d*)
-                0x00800068                . = ALIGN (0x2)
- *fill*         0x00800067        0x1 
-                0x00800068                _edata = .
-                0x00800068                PROVIDE (__data_end, .)
+                0x00800080                . = ALIGN (0x2)
+ *fill*         0x0080007f        0x1 
+                0x00800080                _edata = .
+                0x00800080                PROVIDE (__data_end, .)
 
-.bss            0x00800068        0x1
-                0x00800068                PROVIDE (__bss_start, .)
+.bss            0x00800080        0x3
+                0x00800080                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00800068        0x1 simplevfd.o
-                0x00800068                display
+ .bss           0x00800080        0x2 simplevfd.o
+                0x00800080                serial
+                0x00800081                display
+ .bss           0x00800082        0x1 vfd.o
  *(.bss*)
  *(COMMON)
-                0x00800069                PROVIDE (__bss_end, .)
-                0x000005a0                __data_load_start = LOADADDR (.data)
-                0x000005a8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800083                PROVIDE (__bss_end, .)
+                0x000004de                __data_load_start = LOADADDR (.data)
+                0x000004fe                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800069        0x0
-                0x00800069                PROVIDE (__noinit_start, .)
+.noinit         0x00800083        0x0
+                0x00800083                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800069                PROVIDE (__noinit_end, .)
-                0x00800069                _end = .
-                0x00800069                PROVIDE (__heap_start, .)
+                0x00800083                PROVIDE (__noinit_end, .)
+                0x00800083                _end = .
+                0x00800083                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -410,6 +442,7 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  *(.comment)
  .comment       0x00000000       0x2f simplevfd.o
                                  0x30 (size before relaxing)
+ .comment       0x00000000       0x30 usart.o
  .comment       0x00000000       0x30 vfd.o
 
 .debug
@@ -424,47 +457,57 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x60
+.debug_aranges  0x00000000       0xc0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x28 simplevfd.o
+                0x00000000       0x30 simplevfd.o
  .debug_aranges
-                0x00000028       0x38 vfd.o
+                0x00000030       0x48 usart.o
+ .debug_aranges
+                0x00000078       0x48 vfd.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1305
+.debug_info     0x00000000     0x1966
  *(.debug_info)
- .debug_info    0x00000000      0x46a simplevfd.o
- .debug_info    0x0000046a      0xe9b vfd.o
+ .debug_info    0x00000000      0x6c3 simplevfd.o
+ .debug_info    0x000006c3      0x340 usart.o
+ .debug_info    0x00000a03      0xf63 vfd.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x3c5
+.debug_abbrev   0x00000000      0x5c9
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x184 simplevfd.o
- .debug_abbrev  0x00000184      0x241 vfd.o
+ .debug_abbrev  0x00000000      0x1f0 simplevfd.o
+ .debug_abbrev  0x000001f0      0x177 usart.o
+ .debug_abbrev  0x00000367      0x262 vfd.o
 
-.debug_line     0x00000000      0x3c6
+.debug_line     0x00000000      0x43f
  *(.debug_line)
- .debug_line    0x00000000       0x63 simplevfd.o
- .debug_line    0x00000063      0x363 vfd.o
+ .debug_line    0x00000000       0x97 simplevfd.o
+ .debug_line    0x00000097       0xb4 usart.o
+ .debug_line    0x0000014b      0x2f4 vfd.o
 
-.debug_frame    0x00000000       0xe8
+.debug_frame    0x00000000      0x184
  *(.debug_frame)
- .debug_frame   0x00000000       0x34 simplevfd.o
- .debug_frame   0x00000034       0xb4 vfd.o
+ .debug_frame   0x00000000       0x8c simplevfd.o
+ .debug_frame   0x0000008c       0x74 usart.o
+ .debug_frame   0x00000100       0x84 vfd.o
 
-.debug_str      0x00000000      0x3ef
+.debug_str      0x00000000      0x4d7
  *(.debug_str)
- .debug_str     0x00000000      0x360 simplevfd.o
-                                0x3a6 (size before relaxing)
- .debug_str     0x00000360       0x8f vfd.o
-                                0x3ac (size before relaxing)
+ .debug_str     0x00000000      0x405 simplevfd.o
+                                0x450 (size before relaxing)
+ .debug_str     0x00000405       0x30 usart.o
+                                0x178 (size before relaxing)
+ .debug_str     0x00000435       0xa2 vfd.o
+                                0x3e5 (size before relaxing)
 
-.debug_loc      0x00000000      0x8eb
+.debug_loc      0x00000000      0xb3c
  *(.debug_loc)
- .debug_loc     0x00000000      0x8eb vfd.o
+ .debug_loc     0x00000000       0xf4 simplevfd.o
+ .debug_loc     0x000000f4       0xb0 usart.o
+ .debug_loc     0x000001a4      0x998 vfd.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -472,10 +515,11 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x130
+.debug_ranges   0x00000000      0x600
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x18 simplevfd.o
- .debug_ranges  0x00000018      0x118 vfd.o
+ .debug_ranges  0x00000000       0x20 simplevfd.o
+ .debug_ranges  0x00000020       0x38 usart.o
+ .debug_ranges  0x00000058      0x5a8 vfd.o
 
 .debug_macro
  *(.debug_macro)

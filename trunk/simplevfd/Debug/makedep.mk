@@ -4,5 +4,7 @@
 
 simplevfd.cpp
 
+usart.cpp
+
 vfd.cpp
 

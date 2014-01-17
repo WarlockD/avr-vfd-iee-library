@@ -21,6 +21,7 @@ class vfd {
 	public:
 		vfd();
 		void send(unsigned char)const ;
+		void send(const char*) const;
 		void hw_reset()const ;
 		inline void sw_reset() const { send(0x14); }
 		inline void clear_display() const { send(0x15); }
