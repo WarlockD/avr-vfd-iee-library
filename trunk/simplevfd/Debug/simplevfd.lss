@@ -1,0 +1,1316 @@
+
+simplevfd.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000005a0  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000008  00800060  000005a0  00000634  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800068  00800068  0000063c  2**0
+                  ALLOC
+  3 .stab         000006b4  00000000  00000000  0000063c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00000cf0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000d87  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000060  00000000  00000000  00000db6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00001305  00000000  00000000  00000e16  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000003c5  00000000  00000000  0000211b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000003c6  00000000  00000000  000024e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000000e8  00000000  00000000  000028a8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000003ef  00000000  00000000  00002990  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000008eb  00000000  00000000  00002d7f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000130  00000000  00000000  0000366a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	15 c0       	rjmp	.+42     	; 0x2c <__ctors_end>
+   2:	37 c0       	rjmp	.+110    	; 0x72 <__bad_interrupt>
+   4:	36 c0       	rjmp	.+108    	; 0x72 <__bad_interrupt>
+   6:	35 c0       	rjmp	.+106    	; 0x72 <__bad_interrupt>
+   8:	34 c0       	rjmp	.+104    	; 0x72 <__bad_interrupt>
+   a:	33 c0       	rjmp	.+102    	; 0x72 <__bad_interrupt>
+   c:	32 c0       	rjmp	.+100    	; 0x72 <__bad_interrupt>
+   e:	31 c0       	rjmp	.+98     	; 0x72 <__bad_interrupt>
+  10:	30 c0       	rjmp	.+96     	; 0x72 <__bad_interrupt>
+  12:	2f c0       	rjmp	.+94     	; 0x72 <__bad_interrupt>
+  14:	2e c0       	rjmp	.+92     	; 0x72 <__bad_interrupt>
+  16:	2d c0       	rjmp	.+90     	; 0x72 <__bad_interrupt>
+  18:	2c c0       	rjmp	.+88     	; 0x72 <__bad_interrupt>
+  1a:	2b c0       	rjmp	.+86     	; 0x72 <__bad_interrupt>
+  1c:	2a c0       	rjmp	.+84     	; 0x72 <__bad_interrupt>
+  1e:	29 c0       	rjmp	.+82     	; 0x72 <__bad_interrupt>
+  20:	28 c0       	rjmp	.+80     	; 0x72 <__bad_interrupt>
+  22:	27 c0       	rjmp	.+78     	; 0x72 <__bad_interrupt>
+  24:	26 c0       	rjmp	.+76     	; 0x72 <__bad_interrupt>
+  26:	25 c0       	rjmp	.+74     	; 0x72 <__bad_interrupt>
+  28:	24 c0       	rjmp	.+72     	; 0x72 <__bad_interrupt>
+
+0000002a <__ctors_start>:
+  2a:	5c 00       	.word	0x005c	; ????
+
+0000002c <__ctors_end>:
+  2c:	11 24       	eor	r1, r1
+  2e:	1f be       	out	0x3f, r1	; 63
+  30:	cf ed       	ldi	r28, 0xDF	; 223
+  32:	cd bf       	out	0x3d, r28	; 61
+
+00000034 <__do_copy_data>:
+  34:	10 e0       	ldi	r17, 0x00	; 0
+  36:	a0 e6       	ldi	r26, 0x60	; 96
+  38:	b0 e0       	ldi	r27, 0x00	; 0
+  3a:	e0 ea       	ldi	r30, 0xA0	; 160
+  3c:	f5 e0       	ldi	r31, 0x05	; 5
+  3e:	02 c0       	rjmp	.+4      	; 0x44 <__SREG__+0x5>
+  40:	05 90       	lpm	r0, Z+
+  42:	0d 92       	st	X+, r0
+  44:	a8 36       	cpi	r26, 0x68	; 104
+  46:	b1 07       	cpc	r27, r17
+  48:	d9 f7       	brne	.-10     	; 0x40 <__SREG__+0x1>
+
+0000004a <__do_clear_bss>:
+  4a:	20 e0       	ldi	r18, 0x00	; 0
+  4c:	a8 e6       	ldi	r26, 0x68	; 104
+  4e:	b0 e0       	ldi	r27, 0x00	; 0
+  50:	01 c0       	rjmp	.+2      	; 0x54 <.do_clear_bss_start>
+
+00000052 <.do_clear_bss_loop>:
+  52:	1d 92       	st	X+, r1
+
+00000054 <.do_clear_bss_start>:
+  54:	a9 36       	cpi	r26, 0x69	; 105
+  56:	b2 07       	cpc	r27, r18
+  58:	e1 f7       	brne	.-8      	; 0x52 <.do_clear_bss_loop>
+
+0000005a <__do_global_ctors>:
+  5a:	10 e0       	ldi	r17, 0x00	; 0
+  5c:	cc e2       	ldi	r28, 0x2C	; 44
+  5e:	d0 e0       	ldi	r29, 0x00	; 0
+  60:	03 c0       	rjmp	.+6      	; 0x68 <__do_global_ctors+0xe>
+  62:	22 97       	sbiw	r28, 0x02	; 2
+  64:	fe 01       	movw	r30, r28
+  66:	96 d2       	rcall	.+1324   	; 0x594 <__tablejump__>
+  68:	ca 32       	cpi	r28, 0x2A	; 42
+  6a:	d1 07       	cpc	r29, r17
+  6c:	d1 f7       	brne	.-12     	; 0x62 <__do_global_ctors+0x8>
+  6e:	02 d0       	rcall	.+4      	; 0x74 <main>
+  70:	95 c2       	rjmp	.+1322   	; 0x59c <_exit>
+
+00000072 <__bad_interrupt>:
+  72:	c6 cf       	rjmp	.-116    	; 0x0 <__vectors>
+
+00000074 <main>:
+	0b00011111,
+};
+
+int main(void)
+{
+	DDRB = 0xFF;
+  74:	8f ef       	ldi	r24, 0xFF	; 255
+  76:	87 bb       	out	0x17, r24	; 23
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+  78:	84 e3       	ldi	r24, 0x34	; 52
+  7a:	81 bb       	out	0x11, r24	; 17
+//	LED_ON;
+//	vfd_reset();
+	display.hw_reset();
+  7c:	88 e6       	ldi	r24, 0x68	; 104
+  7e:	90 e0       	ldi	r25, 0x00	; 0
+  80:	30 d0       	rcall	.+96     	; 0xe2 <_ZNK3vfd8hw_resetEv>
+	display.send('a');
+  82:	61 e6       	ldi	r22, 0x61	; 97
+  84:	88 e6       	ldi	r24, 0x68	; 104
+  86:	90 e0       	ldi	r25, 0x00	; 0
+  88:	1f d0       	rcall	.+62     	; 0xc8 <_ZNK3vfd4sendEh>
+	display.send('a');
+  8a:	61 e6       	ldi	r22, 0x61	; 97
+  8c:	88 e6       	ldi	r24, 0x68	; 104
+  8e:	90 e0       	ldi	r25, 0x00	; 0
+  90:	1b d0       	rcall	.+54     	; 0xc8 <_ZNK3vfd4sendEh>
+	display.send('b');
+  92:	62 e6       	ldi	r22, 0x62	; 98
+  94:	88 e6       	ldi	r24, 0x68	; 104
+  96:	90 e0       	ldi	r25, 0x00	; 0
+  98:	17 d0       	rcall	.+46     	; 0xc8 <_ZNK3vfd4sendEh>
+	display.load_custom(0,test);
+  9a:	40 e6       	ldi	r20, 0x60	; 96
+  9c:	50 e0       	ldi	r21, 0x00	; 0
+  9e:	60 e0       	ldi	r22, 0x00	; 0
+  a0:	88 e6       	ldi	r24, 0x68	; 104
+  a2:	90 e0       	ldi	r25, 0x00	; 0
+  a4:	25 d0       	rcall	.+74     	; 0xf0 <_ZN3vfd11load_customEhPKh>
+	display.send(0xF6);
+  a6:	66 ef       	ldi	r22, 0xF6	; 246
+  a8:	88 e6       	ldi	r24, 0x68	; 104
+  aa:	90 e0       	ldi	r25, 0x00	; 0
+  ac:	0d d0       	rcall	.+26     	; 0xc8 <_ZNK3vfd4sendEh>
+	display.send(0xF6);
+  ae:	66 ef       	ldi	r22, 0xF6	; 246
+  b0:	88 e6       	ldi	r24, 0x68	; 104
+  b2:	90 e0       	ldi	r25, 0x00	; 0
+  b4:	09 d0       	rcall	.+18     	; 0xc8 <_ZNK3vfd4sendEh>
+  b6:	ff cf       	rjmp	.-2      	; 0xb6 <main+0x42>
+
+000000b8 <_GLOBAL__sub_I_display>:
+//#define F_CPU 7372800UL
+#include <avr/io.h>
+#include <util/delay.h>
+#include "vfd.h"
+
+vfd display;
+  b8:	88 e6       	ldi	r24, 0x68	; 104
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+  bc:	00 c0       	rjmp	.+0      	; 0xbe <_ZN3vfdC1Ev>
+
+000000be <_ZN3vfdC1Ev>:
+#define IS_BUSY (_BV(PD3) & PIND)
+#define LED_ON PORTD |= _BV(PD2)
+#define LED_OFF PORTD &= ~(_BV(PD2))
+
+vfd::vfd() {
+	DDRB = 0xFF;
+  be:	8f ef       	ldi	r24, 0xFF	; 255
+  c0:	87 bb       	out	0x17, r24	; 23
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+  c2:	84 e3       	ldi	r24, 0x34	; 52
+  c4:	81 bb       	out	0x11, r24	; 17
+  c6:	08 95       	ret
+
+000000c8 <_ZNK3vfd4sendEh>:
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+  c8:	83 99       	sbic	0x10, 3	; 16
+  ca:	fe cf       	rjmp	.-4      	; 0xc8 <_ZNK3vfd4sendEh>
+	WRITE_CLR;
+  cc:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+  ce:	68 bb       	out	0x18, r22	; 24
+	WRITE_SET;
+  d0:	94 9a       	sbi	0x12, 4	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  d2:	8c ec       	ldi	r24, 0xCC	; 204
+  d4:	91 e0       	ldi	r25, 0x01	; 1
+  d6:	01 97       	sbiw	r24, 0x01	; 1
+  d8:	f1 f7       	brne	.-4      	; 0xd6 <_ZNK3vfd4sendEh+0xe>
+  da:	00 c0       	rjmp	.+0      	; 0xdc <_ZNK3vfd4sendEh+0x14>
+  dc:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+  de:	94 98       	cbi	0x12, 4	; 18
+  e0:	08 95       	ret
+
+000000e2 <_ZNK3vfd8hw_resetEv>:
+}
+void vfd::hw_reset()const  {
+	RESET_CLR;
+  e2:	95 98       	cbi	0x12, 5	; 18
+  e4:	8d ed       	ldi	r24, 0xDD	; 221
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	01 97       	sbiw	r24, 0x01	; 1
+  ea:	f1 f7       	brne	.-4      	; 0xe8 <_ZNK3vfd8hw_resetEv+0x6>
+	_delay_us(120);
+	RESET_SET;
+  ec:	95 9a       	sbi	0x12, 5	; 18
+  ee:	08 95       	ret
+
+000000f0 <_ZN3vfd11load_customEhPKh>:
+#define CM_32 font+6, 3
+#define CM_33 font+6, 2
+#define CM_34 font+6, 1
+#define CM_35 font+6, 0
+
+void vfd::load_custom(unsigned char loc, const unsigned char font[]) {
+  f0:	2f 92       	push	r2
+  f2:	3f 92       	push	r3
+  f4:	4f 92       	push	r4
+  f6:	5f 92       	push	r5
+  f8:	6f 92       	push	r6
+  fa:	7f 92       	push	r7
+  fc:	8f 92       	push	r8
+  fe:	9f 92       	push	r9
+ 100:	af 92       	push	r10
+ 102:	bf 92       	push	r11
+ 104:	cf 92       	push	r12
+ 106:	df 92       	push	r13
+ 108:	ef 92       	push	r14
+ 10a:	ff 92       	push	r15
+ 10c:	0f 93       	push	r16
+ 10e:	1f 93       	push	r17
+ 110:	cf 93       	push	r28
+ 112:	df 93       	push	r29
+ 114:	cd b7       	in	r28, 0x3d	; 61
+ 116:	dd 27       	eor	r29, r29
+ 118:	c8 52       	subi	r28, 0x28	; 40
+ 11a:	cd bf       	out	0x3d, r28	; 61
+ 11c:	fa 01       	movw	r30, r20
+ 11e:	4d a1       	ldd	r20, Y+37	; 0x25
+ 120:	5e a1       	ldd	r21, Y+38	; 0x26
+ 122:	8f a1       	ldd	r24, Y+39	; 0x27
+ 124:	98 a5       	ldd	r25, Y+40	; 0x28
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 126:	83 99       	sbic	0x10, 3	; 16
+ 128:	fe cf       	rjmp	.-4      	; 0x126 <_ZN3vfd11load_customEhPKh+0x36>
+ 12a:	5e a3       	std	Y+38, r21	; 0x26
+ 12c:	4d a3       	std	Y+37, r20	; 0x25
+ 12e:	98 a7       	std	Y+40, r25	; 0x28
+ 130:	8f a3       	std	Y+39, r24	; 0x27
+	WRITE_CLR;
+ 132:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 134:	78 e1       	ldi	r23, 0x18	; 24
+ 136:	78 bb       	out	0x18, r23	; 24
+	WRITE_SET;
+ 138:	94 9a       	sbi	0x12, 4	; 18
+ 13a:	8c ec       	ldi	r24, 0xCC	; 204
+ 13c:	91 e0       	ldi	r25, 0x01	; 1
+ 13e:	01 97       	sbiw	r24, 0x01	; 1
+ 140:	f1 f7       	brne	.-4      	; 0x13e <_ZN3vfd11load_customEhPKh+0x4e>
+ 142:	00 c0       	rjmp	.+0      	; 0x144 <_ZN3vfd11load_customEhPKh+0x54>
+ 144:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 146:	94 98       	cbi	0x12, 4	; 18
+#define CM_35 font+6, 0
+
+void vfd::load_custom(unsigned char loc, const unsigned char font[]) {
+	unsigned char o;
+	send(0x18);								// start custom char
+	send(loc < 10 ? loc  : 0xFF- loc);		// User can say 0-9 or the actual locations F6-FF
+ 148:	6a 30       	cpi	r22, 0x0A	; 10
+ 14a:	08 f4       	brcc	.+2      	; 0x14e <_ZN3vfd11load_customEhPKh+0x5e>
+ 14c:	1c c2       	rjmp	.+1080   	; 0x586 <_ZN3vfd11load_customEhPKh+0x496>
+ 14e:	60 95       	com	r22
+ 150:	4d a1       	ldd	r20, Y+37	; 0x25
+ 152:	5e a1       	ldd	r21, Y+38	; 0x26
+ 154:	8f a1       	ldd	r24, Y+39	; 0x27
+ 156:	98 a5       	ldd	r25, Y+40	; 0x28
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 158:	83 99       	sbic	0x10, 3	; 16
+ 15a:	fe cf       	rjmp	.-4      	; 0x158 <_ZN3vfd11load_customEhPKh+0x68>
+ 15c:	5e a3       	std	Y+38, r21	; 0x26
+ 15e:	4d a3       	std	Y+37, r20	; 0x25
+ 160:	98 a7       	std	Y+40, r25	; 0x28
+ 162:	8f a3       	std	Y+39, r24	; 0x27
+	WRITE_CLR;
+ 164:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 166:	68 bb       	out	0x18, r22	; 24
+	WRITE_SET;
+ 168:	94 9a       	sbi	0x12, 4	; 18
+ 16a:	8c ec       	ldi	r24, 0xCC	; 204
+ 16c:	91 e0       	ldi	r25, 0x01	; 1
+ 16e:	01 97       	sbiw	r24, 0x01	; 1
+ 170:	f1 f7       	brne	.-4      	; 0x16e <_ZN3vfd11load_customEhPKh+0x7e>
+ 172:	00 c0       	rjmp	.+0      	; 0x174 <_ZN3vfd11load_customEhPKh+0x84>
+ 174:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 176:	94 98       	cbi	0x12, 4	; 18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 178:	63 81       	ldd	r22, Z+3	; 0x03
+ 17a:	63 fb       	bst	r22, 3
+ 17c:	aa 24       	eor	r10, r10
+ 17e:	a0 f8       	bld	r10, 0
+ 180:	b1 2c       	mov	r11, r1
+ 182:	aa 0c       	add	r10, r10
+ 184:	bb 1c       	adc	r11, r11
+ 186:	a2 94       	swap	r10
+ 188:	b2 94       	swap	r11
+ 18a:	60 ef       	ldi	r22, 0xF0	; 240
+ 18c:	b6 22       	and	r11, r22
+ 18e:	ba 24       	eor	r11, r10
+ 190:	a6 22       	and	r10, r22
+ 192:	ba 24       	eor	r11, r10
+ 194:	60 81       	ld	r22, Z
+ 196:	62 fb       	bst	r22, 2
+ 198:	cc 24       	eor	r12, r12
+ 19a:	c0 f8       	bld	r12, 0
+ 19c:	d1 2c       	mov	r13, r1
+ 19e:	00 24       	eor	r0, r0
+ 1a0:	d6 94       	lsr	r13
+ 1a2:	c7 94       	ror	r12
+ 1a4:	07 94       	ror	r0
+ 1a6:	d6 94       	lsr	r13
+ 1a8:	c7 94       	ror	r12
+ 1aa:	07 94       	ror	r0
+ 1ac:	dc 2c       	mov	r13, r12
+ 1ae:	c0 2c       	mov	r12, r0
+	6	|	X	15	05	22	31	12	06	25
+	7	|	X	19	01	18	35	16	02	21
+	8	|	X	E	X	X	32	28	24	20
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+ 1b0:	ca 28       	or	r12, r10
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 1b2:	66 81       	ldd	r22, Z+6	; 0x06
+ 1b4:	61 fb       	bst	r22, 1
+ 1b6:	ee 24       	eor	r14, r14
+ 1b8:	e0 f8       	bld	r14, 0
+ 1ba:	f1 2c       	mov	r15, r1
+ 1bc:	e2 94       	swap	r14
+ 1be:	f2 94       	swap	r15
+ 1c0:	a0 ef       	ldi	r26, 0xF0	; 240
+ 1c2:	fa 22       	and	r15, r26
+ 1c4:	fe 24       	eor	r15, r14
+ 1c6:	ea 22       	and	r14, r26
+ 1c8:	fe 24       	eor	r15, r14
+	6	|	X	15	05	22	31	12	06	25
+	7	|	X	19	01	18	35	16	02	21
+	8	|	X	E	X	X	32	28	24	20
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+ 1ca:	ce 28       	or	r12, r14
+ 1cc:	4d a1       	ldd	r20, Y+37	; 0x25
+ 1ce:	5e a1       	ldd	r21, Y+38	; 0x26
+ 1d0:	8f a1       	ldd	r24, Y+39	; 0x27
+ 1d2:	98 a5       	ldd	r25, Y+40	; 0x28
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 1d4:	83 99       	sbic	0x10, 3	; 16
+ 1d6:	fe cf       	rjmp	.-4      	; 0x1d4 <_ZN3vfd11load_customEhPKh+0xe4>
+ 1d8:	5e a3       	std	Y+38, r21	; 0x26
+ 1da:	4d a3       	std	Y+37, r20	; 0x25
+ 1dc:	98 a7       	std	Y+40, r25	; 0x28
+ 1de:	8f a3       	std	Y+39, r24	; 0x27
+	WRITE_CLR;
+ 1e0:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 1e2:	c8 ba       	out	0x18, r12	; 24
+	WRITE_SET;
+ 1e4:	94 9a       	sbi	0x12, 4	; 18
+ 1e6:	ac ec       	ldi	r26, 0xCC	; 204
+ 1e8:	b1 e0       	ldi	r27, 0x01	; 1
+ 1ea:	11 97       	sbiw	r26, 0x01	; 1
+ 1ec:	f1 f7       	brne	.-4      	; 0x1ea <_ZN3vfd11load_customEhPKh+0xfa>
+ 1ee:	00 c0       	rjmp	.+0      	; 0x1f0 <_ZN3vfd11load_customEhPKh+0x100>
+ 1f0:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 1f2:	94 98       	cbi	0x12, 4	; 18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 1f4:	62 81       	ldd	r22, Z+2	; 0x02
+ 1f6:	76 81       	ldd	r23, Z+6	; 0x06
+ 1f8:	72 fb       	bst	r23, 2
+ 1fa:	77 27       	eor	r23, r23
+ 1fc:	70 f9       	bld	r23, 0
+ 1fe:	f5 80       	ldd	r15, Z+5	; 0x05
+ 200:	0f 2d       	mov	r16, r15
+ 202:	01 70       	andi	r16, 0x01	; 1
+ 204:	10 e0       	ldi	r17, 0x00	; 0
+ 206:	02 95       	swap	r16
+ 208:	12 95       	swap	r17
+ 20a:	10 7f       	andi	r17, 0xF0	; 240
+ 20c:	10 27       	eor	r17, r16
+ 20e:	00 7f       	andi	r16, 0xF0	; 240
+ 210:	10 27       	eor	r17, r16
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+ 212:	07 2b       	or	r16, r23
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 214:	71 81       	ldd	r23, Z+1	; 0x01
+ 216:	73 fb       	bst	r23, 3
+ 218:	77 27       	eor	r23, r23
+ 21a:	70 f9       	bld	r23, 0
+ 21c:	7d a3       	std	Y+37, r23	; 0x25
+ 21e:	1e a2       	std	Y+38, r1	; 0x26
+ 220:	2d a1       	ldd	r18, Y+37	; 0x25
+ 222:	3e a1       	ldd	r19, Y+38	; 0x26
+ 224:	00 24       	eor	r0, r0
+ 226:	36 95       	lsr	r19
+ 228:	27 95       	ror	r18
+ 22a:	07 94       	ror	r0
+ 22c:	36 95       	lsr	r19
+ 22e:	27 95       	ror	r18
+ 230:	07 94       	ror	r0
+ 232:	32 2f       	mov	r19, r18
+ 234:	20 2d       	mov	r18, r0
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+ 236:	02 2b       	or	r16, r18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 238:	62 fb       	bst	r22, 2
+ 23a:	aa 27       	eor	r26, r26
+ 23c:	a0 f9       	bld	r26, 0
+ 23e:	b0 e0       	ldi	r27, 0x00	; 0
+ 240:	aa 0f       	add	r26, r26
+ 242:	bb 1f       	adc	r27, r27
+ 244:	a2 95       	swap	r26
+ 246:	b2 95       	swap	r27
+ 248:	b0 7f       	andi	r27, 0xF0	; 240
+ 24a:	ba 27       	eor	r27, r26
+ 24c:	a0 7f       	andi	r26, 0xF0	; 240
+ 24e:	ba 27       	eor	r27, r26
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+ 250:	0a 2b       	or	r16, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 252:	74 81       	ldd	r23, Z+4	; 0x04
+ 254:	72 fb       	bst	r23, 2
+ 256:	77 27       	eor	r23, r23
+ 258:	70 f9       	bld	r23, 0
+ 25a:	79 83       	std	Y+1, r23	; 0x01
+ 25c:	1a 82       	std	Y+2, r1	; 0x02
+ 25e:	89 81       	ldd	r24, Y+1	; 0x01
+ 260:	9a 81       	ldd	r25, Y+2	; 0x02
+ 262:	88 0f       	add	r24, r24
+ 264:	99 1f       	adc	r25, r25
+ 266:	88 0f       	add	r24, r24
+ 268:	99 1f       	adc	r25, r25
+ 26a:	88 0f       	add	r24, r24
+ 26c:	99 1f       	adc	r25, r25
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+ 26e:	08 2b       	or	r16, r24
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 270:	70 81       	ld	r23, Z
+ 272:	71 fb       	bst	r23, 1
+ 274:	22 27       	eor	r18, r18
+ 276:	20 f9       	bld	r18, 0
+ 278:	30 e0       	ldi	r19, 0x00	; 0
+ 27a:	22 0f       	add	r18, r18
+ 27c:	33 1f       	adc	r19, r19
+ 27e:	22 0f       	add	r18, r18
+ 280:	33 1f       	adc	r19, r19
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+ 282:	02 2b       	or	r16, r18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 284:	66 95       	lsr	r22
+ 286:	61 70       	andi	r22, 0x01	; 1
+ 288:	6f a3       	std	Y+39, r22	; 0x27
+ 28a:	18 a6       	std	Y+40, r1	; 0x28
+ 28c:	af a1       	ldd	r26, Y+39	; 0x27
+ 28e:	b8 a5       	ldd	r27, Y+40	; 0x28
+ 290:	aa 0f       	add	r26, r26
+ 292:	bb 1f       	adc	r27, r27
+	
+	*/
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+ 294:	0a 2b       	or	r16, r26
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 296:	83 99       	sbic	0x10, 3	; 16
+ 298:	fe cf       	rjmp	.-4      	; 0x296 <_ZN3vfd11load_customEhPKh+0x1a6>
+	WRITE_CLR;
+ 29a:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 29c:	08 bb       	out	0x18, r16	; 24
+	WRITE_SET;
+ 29e:	94 9a       	sbi	0x12, 4	; 18
+ 2a0:	8c ec       	ldi	r24, 0xCC	; 204
+ 2a2:	91 e0       	ldi	r25, 0x01	; 1
+ 2a4:	01 97       	sbiw	r24, 0x01	; 1
+ 2a6:	f1 f7       	brne	.-4      	; 0x2a4 <_ZN3vfd11load_customEhPKh+0x1b4>
+ 2a8:	00 c0       	rjmp	.+0      	; 0x2aa <_ZN3vfd11load_customEhPKh+0x1ba>
+ 2aa:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 2ac:	94 98       	cbi	0x12, 4	; 18
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+	o |= (1<<6);	// Set E for 1
+	send(o);							// send byte 7
+ 2ae:	21 81       	ldd	r18, Z+1	; 0x01
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 2b0:	92 2f       	mov	r25, r18
+ 2b2:	85 81       	ldd	r24, Z+5	; 0x05
+ 2b4:	81 fb       	bst	r24, 1
+ 2b6:	33 27       	eor	r19, r19
+ 2b8:	30 f9       	bld	r19, 0
+ 2ba:	20 fb       	bst	r18, 0
+ 2bc:	88 24       	eor	r8, r8
+ 2be:	80 f8       	bld	r8, 0
+ 2c0:	91 2c       	mov	r9, r1
+ 2c2:	88 0c       	add	r8, r8
+ 2c4:	99 1c       	adc	r9, r9
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+ 2c6:	83 2a       	or	r8, r19
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 2c8:	22 81       	ldd	r18, Z+2	; 0x02
+ 2ca:	24 fb       	bst	r18, 4
+ 2cc:	66 24       	eor	r6, r6
+ 2ce:	60 f8       	bld	r6, 0
+ 2d0:	71 2c       	mov	r7, r1
+ 2d2:	00 24       	eor	r0, r0
+ 2d4:	76 94       	lsr	r7
+ 2d6:	67 94       	ror	r6
+ 2d8:	07 94       	ror	r0
+ 2da:	76 94       	lsr	r7
+ 2dc:	67 94       	ror	r6
+ 2de:	07 94       	ror	r0
+ 2e0:	76 2c       	mov	r7, r6
+ 2e2:	60 2c       	mov	r6, r0
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+ 2e4:	86 28       	or	r8, r6
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 2e6:	91 fb       	bst	r25, 1
+ 2e8:	44 24       	eor	r4, r4
+ 2ea:	40 f8       	bld	r4, 0
+ 2ec:	51 2c       	mov	r5, r1
+ 2ee:	44 0c       	add	r4, r4
+ 2f0:	55 1c       	adc	r5, r5
+ 2f2:	42 94       	swap	r4
+ 2f4:	52 94       	swap	r5
+ 2f6:	40 ef       	ldi	r20, 0xF0	; 240
+ 2f8:	54 22       	and	r5, r20
+ 2fa:	54 24       	eor	r5, r4
+ 2fc:	44 22       	and	r4, r20
+ 2fe:	54 24       	eor	r5, r4
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+ 300:	84 28       	or	r8, r4
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 302:	84 fb       	bst	r24, 4
+ 304:	22 24       	eor	r2, r2
+ 306:	20 f8       	bld	r2, 0
+ 308:	31 2c       	mov	r3, r1
+ 30a:	22 94       	swap	r2
+ 30c:	32 94       	swap	r3
+ 30e:	50 ef       	ldi	r21, 0xF0	; 240
+ 310:	35 22       	and	r3, r21
+ 312:	32 24       	eor	r3, r2
+ 314:	25 22       	and	r2, r21
+ 316:	32 24       	eor	r3, r2
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+ 318:	82 28       	or	r8, r2
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 31a:	83 fb       	bst	r24, 3
+ 31c:	88 27       	eor	r24, r24
+ 31e:	80 f9       	bld	r24, 0
+ 320:	8b 83       	std	Y+3, r24	; 0x03
+ 322:	1c 82       	std	Y+4, r1	; 0x04
+ 324:	ab 81       	ldd	r26, Y+3	; 0x03
+ 326:	bc 81       	ldd	r27, Y+4	; 0x04
+ 328:	aa 0f       	add	r26, r26
+ 32a:	bb 1f       	adc	r27, r27
+ 32c:	aa 0f       	add	r26, r26
+ 32e:	bb 1f       	adc	r27, r27
+ 330:	aa 0f       	add	r26, r26
+ 332:	bb 1f       	adc	r27, r27
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+ 334:	8a 2a       	or	r8, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 336:	92 fb       	bst	r25, 2
+ 338:	99 27       	eor	r25, r25
+ 33a:	90 f9       	bld	r25, 0
+ 33c:	9d 83       	std	Y+5, r25	; 0x05
+ 33e:	1e 82       	std	Y+6, r1	; 0x06
+ 340:	2d 81       	ldd	r18, Y+5	; 0x05
+ 342:	3e 81       	ldd	r19, Y+6	; 0x06
+ 344:	22 0f       	add	r18, r18
+ 346:	33 1f       	adc	r19, r19
+ 348:	22 0f       	add	r18, r18
+ 34a:	33 1f       	adc	r19, r19
+	o = VFD_CONVERT(CM_03,6) | VFD_CONVERT(CM_17,5) | VFD_CONVERT(CM_34,4);
+	send(o);							// send byte 3
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+ 34c:	82 2a       	or	r8, r18
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 34e:	83 99       	sbic	0x10, 3	; 16
+ 350:	fe cf       	rjmp	.-4      	; 0x34e <_ZN3vfd11load_customEhPKh+0x25e>
+	WRITE_CLR;
+ 352:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 354:	88 ba       	out	0x18, r8	; 24
+	WRITE_SET;
+ 356:	94 9a       	sbi	0x12, 4	; 18
+ 358:	8c ec       	ldi	r24, 0xCC	; 204
+ 35a:	91 e0       	ldi	r25, 0x01	; 1
+ 35c:	01 97       	sbiw	r24, 0x01	; 1
+ 35e:	f1 f7       	brne	.-4      	; 0x35c <_ZN3vfd11load_customEhPKh+0x26c>
+ 360:	00 c0       	rjmp	.+0      	; 0x362 <_ZN3vfd11load_customEhPKh+0x272>
+ 362:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 364:	94 98       	cbi	0x12, 4	; 18
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+	o |= (1<<6);	// Set E for 1
+	send(o);							// send byte 7
+ 366:	82 81       	ldd	r24, Z+2	; 0x02
+ 368:	94 81       	ldd	r25, Z+4	; 0x04
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 36a:	a8 2f       	mov	r26, r24
+ 36c:	a1 70       	andi	r26, 0x01	; 1
+ 36e:	af 83       	std	Y+7, r26	; 0x07
+ 370:	18 86       	std	Y+8, r1	; 0x08
+ 372:	2f 81       	ldd	r18, Y+7	; 0x07
+ 374:	38 85       	ldd	r19, Y+8	; 0x08
+ 376:	00 24       	eor	r0, r0
+ 378:	36 95       	lsr	r19
+ 37a:	27 95       	ror	r18
+ 37c:	07 94       	ror	r0
+ 37e:	36 95       	lsr	r19
+ 380:	27 95       	ror	r18
+ 382:	07 94       	ror	r0
+ 384:	32 2f       	mov	r19, r18
+ 386:	20 2d       	mov	r18, r0
+ 388:	38 87       	std	Y+8, r19	; 0x08
+ 38a:	2f 83       	std	Y+7, r18	; 0x07
+ 38c:	20 81       	ld	r18, Z
+ 38e:	21 70       	andi	r18, 0x01	; 1
+ 390:	29 87       	std	Y+9, r18	; 0x09
+ 392:	1a 86       	std	Y+10, r1	; 0x0a
+ 394:	a9 85       	ldd	r26, Y+9	; 0x09
+ 396:	ba 85       	ldd	r27, Y+10	; 0x0a
+ 398:	aa 0f       	add	r26, r26
+ 39a:	bb 1f       	adc	r27, r27
+ 39c:	a2 95       	swap	r26
+ 39e:	b2 95       	swap	r27
+ 3a0:	b0 7f       	andi	r27, 0xF0	; 240
+ 3a2:	ba 27       	eor	r27, r26
+ 3a4:	a0 7f       	andi	r26, 0xF0	; 240
+ 3a6:	ba 27       	eor	r27, r26
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+ 3a8:	2f 81       	ldd	r18, Y+7	; 0x07
+ 3aa:	2a 2b       	or	r18, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 3ac:	39 2f       	mov	r19, r25
+ 3ae:	31 70       	andi	r19, 0x01	; 1
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+ 3b0:	23 2b       	or	r18, r19
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 3b2:	93 fb       	bst	r25, 3
+ 3b4:	99 27       	eor	r25, r25
+ 3b6:	90 f9       	bld	r25, 0
+ 3b8:	9b 87       	std	Y+11, r25	; 0x0b
+ 3ba:	1c 86       	std	Y+12, r1	; 0x0c
+ 3bc:	ab 85       	ldd	r26, Y+11	; 0x0b
+ 3be:	bc 85       	ldd	r27, Y+12	; 0x0c
+ 3c0:	a2 95       	swap	r26
+ 3c2:	b2 95       	swap	r27
+ 3c4:	b0 7f       	andi	r27, 0xF0	; 240
+ 3c6:	ba 27       	eor	r27, r26
+ 3c8:	a0 7f       	andi	r26, 0xF0	; 240
+ 3ca:	ba 27       	eor	r27, r26
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+ 3cc:	2a 2b       	or	r18, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 3ce:	96 81       	ldd	r25, Z+6	; 0x06
+ 3d0:	92 95       	swap	r25
+ 3d2:	91 70       	andi	r25, 0x01	; 1
+ 3d4:	9d 87       	std	Y+13, r25	; 0x0d
+ 3d6:	1e 86       	std	Y+14, r1	; 0x0e
+ 3d8:	ad 85       	ldd	r26, Y+13	; 0x0d
+ 3da:	be 85       	ldd	r27, Y+14	; 0x0e
+ 3dc:	aa 0f       	add	r26, r26
+ 3de:	bb 1f       	adc	r27, r27
+ 3e0:	aa 0f       	add	r26, r26
+ 3e2:	bb 1f       	adc	r27, r27
+ 3e4:	aa 0f       	add	r26, r26
+ 3e6:	bb 1f       	adc	r27, r27
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+ 3e8:	2a 2b       	or	r18, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 3ea:	83 fb       	bst	r24, 3
+ 3ec:	88 27       	eor	r24, r24
+ 3ee:	80 f9       	bld	r24, 0
+ 3f0:	8f 87       	std	Y+15, r24	; 0x0f
+ 3f2:	18 8a       	std	Y+16, r1	; 0x10
+ 3f4:	8f 85       	ldd	r24, Y+15	; 0x0f
+ 3f6:	98 89       	ldd	r25, Y+16	; 0x10
+ 3f8:	88 0f       	add	r24, r24
+ 3fa:	99 1f       	adc	r25, r25
+ 3fc:	88 0f       	add	r24, r24
+ 3fe:	99 1f       	adc	r25, r25
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+ 400:	28 2b       	or	r18, r24
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 402:	81 81       	ldd	r24, Z+1	; 0x01
+ 404:	82 95       	swap	r24
+ 406:	81 70       	andi	r24, 0x01	; 1
+ 408:	89 8b       	std	Y+17, r24	; 0x11
+ 40a:	1a 8a       	std	Y+18, r1	; 0x12
+ 40c:	a9 89       	ldd	r26, Y+17	; 0x11
+ 40e:	ba 89       	ldd	r27, Y+18	; 0x12
+ 410:	aa 0f       	add	r26, r26
+ 412:	bb 1f       	adc	r27, r27
+	//4	|	X	07	13	30	23	04	14	22
+	o = VFD_CONVERT(CM_07,6) | VFD_CONVERT(CM_13,5) | VFD_CONVERT(CM_30,4) | VFD_CONVERT(CM_23,3) | VFD_CONVERT(CM_04,2) | VFD_CONVERT(CM_14,1) | VFD_CONVERT(CM_33,0);
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+ 414:	2a 2b       	or	r18, r26
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 416:	83 99       	sbic	0x10, 3	; 16
+ 418:	fe cf       	rjmp	.-4      	; 0x416 <_ZN3vfd11load_customEhPKh+0x326>
+	WRITE_CLR;
+ 41a:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 41c:	28 bb       	out	0x18, r18	; 24
+	WRITE_SET;
+ 41e:	94 9a       	sbi	0x12, 4	; 18
+ 420:	8c ec       	ldi	r24, 0xCC	; 204
+ 422:	91 e0       	ldi	r25, 0x01	; 1
+ 424:	01 97       	sbiw	r24, 0x01	; 1
+ 426:	f1 f7       	brne	.-4      	; 0x424 <_ZN3vfd11load_customEhPKh+0x334>
+ 428:	00 c0       	rjmp	.+0      	; 0x42a <_ZN3vfd11load_customEhPKh+0x33a>
+ 42a:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 42c:	94 98       	cbi	0x12, 4	; 18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 42e:	93 81       	ldd	r25, Z+3	; 0x03
+ 430:	20 81       	ld	r18, Z
+ 432:	84 81       	ldd	r24, Z+4	; 0x04
+ 434:	82 95       	swap	r24
+ 436:	81 70       	andi	r24, 0x01	; 1
+ 438:	36 81       	ldd	r19, Z+6	; 0x06
+ 43a:	31 70       	andi	r19, 0x01	; 1
+ 43c:	3b 8b       	std	Y+19, r19	; 0x13
+ 43e:	1c 8a       	std	Y+20, r1	; 0x14
+ 440:	ab 89       	ldd	r26, Y+19	; 0x13
+ 442:	bc 89       	ldd	r27, Y+20	; 0x14
+ 444:	aa 0f       	add	r26, r26
+ 446:	bb 1f       	adc	r27, r27
+ 448:	aa 0f       	add	r26, r26
+ 44a:	bb 1f       	adc	r27, r27
+ 44c:	aa 0f       	add	r26, r26
+ 44e:	bb 1f       	adc	r27, r27
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+ 450:	8a 2b       	or	r24, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 452:	91 fb       	bst	r25, 1
+ 454:	bb 27       	eor	r27, r27
+ 456:	b0 f9       	bld	r27, 0
+ 458:	bd 8b       	std	Y+21, r27	; 0x15
+ 45a:	1e 8a       	std	Y+22, r1	; 0x16
+ 45c:	ad 89       	ldd	r26, Y+21	; 0x15
+ 45e:	be 89       	ldd	r27, Y+22	; 0x16
+ 460:	00 24       	eor	r0, r0
+ 462:	b6 95       	lsr	r27
+ 464:	a7 95       	ror	r26
+ 466:	07 94       	ror	r0
+ 468:	b6 95       	lsr	r27
+ 46a:	a7 95       	ror	r26
+ 46c:	07 94       	ror	r0
+ 46e:	ba 2f       	mov	r27, r26
+ 470:	a0 2d       	mov	r26, r0
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+ 472:	8a 2b       	or	r24, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 474:	24 fb       	bst	r18, 4
+ 476:	bb 27       	eor	r27, r27
+ 478:	b0 f9       	bld	r27, 0
+ 47a:	bf 8b       	std	Y+23, r27	; 0x17
+ 47c:	18 8e       	std	Y+24, r1	; 0x18
+ 47e:	af 89       	ldd	r26, Y+23	; 0x17
+ 480:	b8 8d       	ldd	r27, Y+24	; 0x18
+ 482:	aa 0f       	add	r26, r26
+ 484:	bb 1f       	adc	r27, r27
+ 486:	a2 95       	swap	r26
+ 488:	b2 95       	swap	r27
+ 48a:	b0 7f       	andi	r27, 0xF0	; 240
+ 48c:	ba 27       	eor	r27, r26
+ 48e:	a0 7f       	andi	r26, 0xF0	; 240
+ 490:	ba 27       	eor	r27, r26
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+ 492:	8a 2b       	or	r24, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 494:	92 fb       	bst	r25, 2
+ 496:	bb 27       	eor	r27, r27
+ 498:	b0 f9       	bld	r27, 0
+ 49a:	b9 8f       	std	Y+25, r27	; 0x19
+ 49c:	1a 8e       	std	Y+26, r1	; 0x1a
+ 49e:	a9 8d       	ldd	r26, Y+25	; 0x19
+ 4a0:	ba 8d       	ldd	r27, Y+26	; 0x1a
+ 4a2:	a2 95       	swap	r26
+ 4a4:	b2 95       	swap	r27
+ 4a6:	b0 7f       	andi	r27, 0xF0	; 240
+ 4a8:	ba 27       	eor	r27, r26
+ 4aa:	a0 7f       	andi	r26, 0xF0	; 240
+ 4ac:	ba 27       	eor	r27, r26
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+ 4ae:	8a 2b       	or	r24, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 4b0:	92 95       	swap	r25
+ 4b2:	91 70       	andi	r25, 0x01	; 1
+ 4b4:	9b 8f       	std	Y+27, r25	; 0x1b
+ 4b6:	1c 8e       	std	Y+28, r1	; 0x1c
+ 4b8:	ab 8d       	ldd	r26, Y+27	; 0x1b
+ 4ba:	bc 8d       	ldd	r27, Y+28	; 0x1c
+ 4bc:	aa 0f       	add	r26, r26
+ 4be:	bb 1f       	adc	r27, r27
+ 4c0:	aa 0f       	add	r26, r26
+ 4c2:	bb 1f       	adc	r27, r27
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+ 4c4:	8a 2b       	or	r24, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 4c6:	23 fb       	bst	r18, 3
+ 4c8:	22 27       	eor	r18, r18
+ 4ca:	20 f9       	bld	r18, 0
+ 4cc:	2d 8f       	std	Y+29, r18	; 0x1d
+ 4ce:	1e 8e       	std	Y+30, r1	; 0x1e
+ 4d0:	2d 8d       	ldd	r18, Y+29	; 0x1d
+ 4d2:	3e 8d       	ldd	r19, Y+30	; 0x1e
+ 4d4:	22 0f       	add	r18, r18
+ 4d6:	33 1f       	adc	r19, r19
+	send(o);							// send byte 4
+	o = VFD_CONVERT(CM_11,6) | VFD_CONVERT(CM_09,5) | VFD_CONVERT(CM_26,4) | VFD_CONVERT(CM_27,3) | VFD_CONVERT(CM_08,2) | VFD_CONVERT(CM_10,1) | VFD_CONVERT(CM_29,0);
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+ 4d8:	82 2b       	or	r24, r18
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 4da:	83 99       	sbic	0x10, 3	; 16
+ 4dc:	fe cf       	rjmp	.-4      	; 0x4da <_ZN3vfd11load_customEhPKh+0x3ea>
+	WRITE_CLR;
+ 4de:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 4e0:	88 bb       	out	0x18, r24	; 24
+	WRITE_SET;
+ 4e2:	94 9a       	sbi	0x12, 4	; 18
+ 4e4:	8c ec       	ldi	r24, 0xCC	; 204
+ 4e6:	91 e0       	ldi	r25, 0x01	; 1
+ 4e8:	01 97       	sbiw	r24, 0x01	; 1
+ 4ea:	f1 f7       	brne	.-4      	; 0x4e8 <_ZN3vfd11load_customEhPKh+0x3f8>
+ 4ec:	00 c0       	rjmp	.+0      	; 0x4ee <_ZN3vfd11load_customEhPKh+0x3fe>
+ 4ee:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 4f0:	94 98       	cbi	0x12, 4	; 18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 4f2:	83 81       	ldd	r24, Z+3	; 0x03
+ 4f4:	81 70       	andi	r24, 0x01	; 1
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+ 4f6:	80 64       	ori	r24, 0x40	; 64
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 4f8:	96 81       	ldd	r25, Z+6	; 0x06
+ 4fa:	93 fb       	bst	r25, 3
+ 4fc:	99 27       	eor	r25, r25
+ 4fe:	90 f9       	bld	r25, 0
+ 500:	9f 8f       	std	Y+31, r25	; 0x1f
+ 502:	18 a2       	std	Y+32, r1	; 0x20
+ 504:	af 8d       	ldd	r26, Y+31	; 0x1f
+ 506:	b8 a1       	ldd	r27, Y+32	; 0x20
+ 508:	aa 0f       	add	r26, r26
+ 50a:	bb 1f       	adc	r27, r27
+ 50c:	aa 0f       	add	r26, r26
+ 50e:	bb 1f       	adc	r27, r27
+ 510:	aa 0f       	add	r26, r26
+ 512:	bb 1f       	adc	r27, r27
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+ 514:	8a 2b       	or	r24, r26
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 516:	95 81       	ldd	r25, Z+5	; 0x05
+ 518:	92 fb       	bst	r25, 2
+ 51a:	99 27       	eor	r25, r25
+ 51c:	90 f9       	bld	r25, 0
+ 51e:	99 a3       	std	Y+33, r25	; 0x21
+ 520:	1a a2       	std	Y+34, r1	; 0x22
+ 522:	29 a1       	ldd	r18, Y+33	; 0x21
+ 524:	3a a1       	ldd	r19, Y+34	; 0x22
+ 526:	22 0f       	add	r18, r18
+ 528:	33 1f       	adc	r19, r19
+ 52a:	22 0f       	add	r18, r18
+ 52c:	33 1f       	adc	r19, r19
+	send(o);							// send byte 5
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+ 52e:	82 2b       	or	r24, r18
+
+// Taken from the S03601-95B-40 datasheet.  It must be the way shifts happen
+// its just crazy otherwise
+//#define VFD_CONVERT(a,from,to) ((((font[a]) >> (from)) & 0x01) << (to))
+static unsigned char VFD_CONVERT(const unsigned char* font, unsigned char from, unsigned char to) {
+	return ((*font >> from) & 0x01) << to;
+ 530:	94 81       	ldd	r25, Z+4	; 0x04
+ 532:	96 95       	lsr	r25
+ 534:	91 70       	andi	r25, 0x01	; 1
+ 536:	9b a3       	std	Y+35, r25	; 0x23
+ 538:	1c a2       	std	Y+36, r1	; 0x24
+ 53a:	ab a1       	ldd	r26, Y+35	; 0x23
+ 53c:	bc a1       	ldd	r27, Y+36	; 0x24
+ 53e:	aa 0f       	add	r26, r26
+ 540:	bb 1f       	adc	r27, r27
+	o = VFD_CONVERT(CM_15,6) | VFD_CONVERT(CM_05,5) | VFD_CONVERT(CM_22,4) | VFD_CONVERT(CM_31,3) | VFD_CONVERT(CM_12,2) | VFD_CONVERT(CM_06,1) | VFD_CONVERT(CM_25,0);
+	send(o);							// send byte 6
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+	o |= (1<<6);	// Set E for 1
+ 542:	8a 2b       	or	r24, r26
+vfd::vfd() {
+	DDRB = 0xFF;
+	DDRD = _BV(PD5) | _BV(PD4) | _BV(PD2);
+}
+void vfd::send(unsigned char c)const  {
+	while(IS_BUSY);
+ 544:	83 99       	sbic	0x10, 3	; 16
+ 546:	fe cf       	rjmp	.-4      	; 0x544 <_ZN3vfd11load_customEhPKh+0x454>
+	WRITE_CLR;
+ 548:	94 98       	cbi	0x12, 4	; 18
+	DATA_OUT = c;
+ 54a:	88 bb       	out	0x18, r24	; 24
+	WRITE_SET;
+ 54c:	94 9a       	sbi	0x12, 4	; 18
+ 54e:	ec ec       	ldi	r30, 0xCC	; 204
+ 550:	f1 e0       	ldi	r31, 0x01	; 1
+ 552:	31 97       	sbiw	r30, 0x01	; 1
+ 554:	f1 f7       	brne	.-4      	; 0x552 <_ZN3vfd11load_customEhPKh+0x462>
+ 556:	00 c0       	rjmp	.+0      	; 0x558 <_ZN3vfd11load_customEhPKh+0x468>
+ 558:	00 00       	nop
+	_delay_us(250);
+	WRITE_CLR;
+ 55a:	94 98       	cbi	0x12, 4	; 18
+	o = VFD_CONVERT(CM_19,6) | VFD_CONVERT(CM_01,5) | VFD_CONVERT(CM_18,4) | VFD_CONVERT(CM_35,3) | VFD_CONVERT(CM_16,2) | VFD_CONVERT(CM_02,1) | VFD_CONVERT(CM_21,0);
+	send(o);							// send byte 7
+	o = VFD_CONVERT(CM_32,3) | VFD_CONVERT(CM_28,2) | VFD_CONVERT(CM_24,1) | VFD_CONVERT(CM_20,0);
+	o |= (1<<6);	// Set E for 1
+	send(o);							// send byte 7
+ 55c:	c8 5d       	subi	r28, 0xD8	; 216
+ 55e:	cd bf       	out	0x3d, r28	; 61
+ 560:	df 91       	pop	r29
+ 562:	cf 91       	pop	r28
+ 564:	1f 91       	pop	r17
+ 566:	0f 91       	pop	r16
+ 568:	ff 90       	pop	r15
+ 56a:	ef 90       	pop	r14
+ 56c:	df 90       	pop	r13
+ 56e:	cf 90       	pop	r12
+ 570:	bf 90       	pop	r11
+ 572:	af 90       	pop	r10
+ 574:	9f 90       	pop	r9
+ 576:	8f 90       	pop	r8
+ 578:	7f 90       	pop	r7
+ 57a:	6f 90       	pop	r6
+ 57c:	5f 90       	pop	r5
+ 57e:	4f 90       	pop	r4
+ 580:	3f 90       	pop	r3
+ 582:	2f 90       	pop	r2
+ 584:	08 95       	ret
+ 586:	4d a1       	ldd	r20, Y+37	; 0x25
+ 588:	5e a1       	ldd	r21, Y+38	; 0x26
+ 58a:	8f a1       	ldd	r24, Y+39	; 0x27
+ 58c:	98 a5       	ldd	r25, Y+40	; 0x28
+ 58e:	e4 cd       	rjmp	.-1080   	; 0x158 <_ZN3vfd11load_customEhPKh+0x68>
+
+00000590 <__tablejump2__>:
+ 590:	ee 0f       	add	r30, r30
+ 592:	ff 1f       	adc	r31, r31
+
+00000594 <__tablejump__>:
+ 594:	05 90       	lpm	r0, Z+
+ 596:	f4 91       	lpm	r31, Z
+ 598:	e0 2d       	mov	r30, r0
+ 59a:	09 94       	ijmp
+
+0000059c <_exit>:
+ 59c:	f8 94       	cli
+
+0000059e <__stop_program>:
+ 59e:	ff cf       	rjmp	.-2      	; 0x59e <__stop_program>
